@@ -17,6 +17,7 @@ func _ready():
 	pass
 
 func _physics_process(delta):
+
 	if current_state == states.STUN:
 		return
 	if current_state == states.DASH:
@@ -31,6 +32,7 @@ func _physics_process(delta):
 			current_state = states.IDLE
 
 		print(current_state,velocity)
+
 		animate_state(current_mode,current_state)
 
 func match_fsm(state):
@@ -41,8 +43,8 @@ func match_fsm(state):
 		states.MOVEMENT:
 			if velocity==Vector2():
 				return states.IDLE
-		states.ATTACK:                """Setted them for now in idle will work on it tomorrow
-			return states.IDLE           on the attack and dash after some consultation """
+		states.ATTACK:                
+			return states.IDLE          
 		states.DASH:
 			return states.IDLE
 	return null

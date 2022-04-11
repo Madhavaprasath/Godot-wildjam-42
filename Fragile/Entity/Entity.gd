@@ -1,5 +1,6 @@
 class_name Entity
 extends KinematicBody2D
+
 enum states{
 	IDLE,MOVEMENT,ATTACK,DASH,STUN
 }
@@ -9,6 +10,12 @@ var type = types[0]
 var myAttack
 export (int) var hp = 1
 
+
+
+func _ready():
+	pass # Replace with function body.
+
+
 func _process(delta):
 	if hp <= 0:
 		queue_free()
@@ -17,12 +24,14 @@ func _ready():
 	$StunTime.connect("timeout",self,"_on_StunTime_timeout")
 	pass
 
-func get_hit(attack ):
+
+func get_hit(attack):
 	hp = hp - attack.damage
 	current_state = states.STUN
 	$StunTime.wait_time = attack.stun
 	$StunTime.start();
 	
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
