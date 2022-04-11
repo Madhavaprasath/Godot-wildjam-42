@@ -1,20 +1,19 @@
-extends KinematicBody2D
+extends Entity
 
 export (int) var movement_speed
 
-enum states{
-	IDLE,MOVEMENT,ATTACK,DASH
-}
+
 var modes=["Normal","Beast"]
 var current_mode=modes[0]
-var current_state=states.IDLE
 
 var velocity=Vector2()
 
 onready var animation_player=get_node("AnimationPlayer")
 
 
+
 func _ready():
+	current_state=states.IDLE
 	pass
 
 func _physics_process(delta):
