@@ -10,7 +10,10 @@ var destroy_things : bool = false
 func _ready():
 	pass # Replace with function body.
 
-
+func init(t_attacker,t_damage,t_stun, t_Entity):
+	attacker = attacker_types[t_attacker]
+	damage = t_damage
+	stun = t_stun
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
