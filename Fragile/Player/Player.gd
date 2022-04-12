@@ -54,3 +54,5 @@ func animate_state(current_mode,current_state):
 
 func transform_into_beast():
 	pass
+
+

@@ -35,3 +35,5 @@ cast_to = Vector2( 0, 32 )
 position = Vector2( 0, -32 )
 enabled = true
 cast_to = Vector2( 0, -32 )
+
+[node name="State_timer" type="Timer" parent="." index="5"]
