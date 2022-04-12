@@ -17,10 +17,22 @@ func _ready():
 	pass
 
 func _physics_process(delta):
-	_apply_movement(delta)
-	var state=match_fsm(current_state)
-	if state!=null:
-		current_state=state
+
+	if current_state == states.STUN:
+		return
+	if current_state == states.DASH:
+		_process_dash(delta)
+	else  :
+		_apply_movement(delta)
+
+	if current_state != states.DASH &&current_state != states.STUN:
+		if velocity == Vector2():
+			current_state = states.MOVEMENT
+		else :
+			current_state = states.IDLE
+
+		print(current_state,velocity)
+
 		animate_state(current_mode,current_state)
 
 func match_fsm(state):
@@ -31,8 +43,8 @@ func match_fsm(state):
 		states.MOVEMENT:
 			if velocity==Vector2():
 				return states.IDLE
-		states.ATTACK:                
-			return states.IDLE          
+		states.ATTACK:
+			return states.IDLE
 		states.DASH:
 			return states.IDLE
 	return null
@@ -48,11 +60,23 @@ func _apply_movement(delta):
 func _unhandled_input(event):
 	if event.is_action_pressed("Space"):
 		transform_into_beast()
+	if event.is_action_pressed("Shift"):
+		initiate_dash()
+
+func initiate_dash():
+	if current_state != states.DASH && current_state != states.IDLE:
+		current_state = states.DASH
+
 
 func animate_state(current_mode,current_state):
 	pass
 
+
+
 func transform_into_beast():
 	pass
 
-
+"""Make dash physics calculations here.
+WARNING once the DASH is over, go back to IDLE space """
+func _process_dash(delta):
+	pass

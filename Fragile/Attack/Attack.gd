@@ -4,7 +4,7 @@ extends KinematicBody2D
 var attacker_types =["player","enemy"]
 var attacker = attacker_types[0]
 var damage: int = 0
-var stun = 0
+var stun = 0.5
 var destroy_things : bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
