@@ -6,14 +6,10 @@ enum states{
 }
 var current_state=states.IDLE
 var types = ["player","enemy"]
-var type = types[0]
-var myAttack
+var type = types[1]
+export (String) var myAttack
 export (int) var hp = 1
 
-
-
-func _ready():
-	pass # Replace with function body.
 
 
 func _process(delta):

@@ -7,11 +7,14 @@
 extents = Vector2( 31.5, 31 )
 
 [node name="Player" type="KinematicBody2D"]
+position = Vector2( 35, 38 )
 scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 1 )
+myAttack = "res://Bullet/Bullet.tscn"
 movement_speed = 500
 
 [node name="Sprite" type="Sprite" parent="."]
+rotation = 1.5708
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
