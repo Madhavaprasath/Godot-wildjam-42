@@ -12,14 +12,13 @@ export (int) var hp = 1
 
 
 
-func _ready():
-	pass # Replace with function body.
 
 
 func _process(delta):
 	if hp <= 0:
 		queue_free()
-# Called when the node enters the scene tree for the first time.
+
+
 func _ready():
 	$StunTime.connect("timeout",self,"_on_StunTime_timeout")
 	pass

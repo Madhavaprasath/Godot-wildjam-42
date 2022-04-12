@@ -31,8 +31,6 @@ func _physics_process(delta):
 		else :
 			current_state = states.IDLE
 
-		print(current_state,velocity)
-
 		animate_state(current_mode,current_state)
 
 func match_fsm(state):
