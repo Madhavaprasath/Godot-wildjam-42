@@ -6,11 +6,9 @@ enum states{
 }
 var current_state=states.IDLE
 var types = ["player","enemy"]
-var type = types[0]
-var myAttack
+var type = types[1]
+export (String) var myAttack
 export (int) var hp = 1
-
-
 
 
 
@@ -29,7 +27,7 @@ func get_hit(attack):
 	current_state = states.STUN
 	$StunTime.wait_time = attack.stun
 	$StunTime.start();
-	
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
