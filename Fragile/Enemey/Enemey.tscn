@@ -1,22 +1,28 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Entity/Entity.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Enemey/Enemey.gd" type="Script" id=2]
 
+[sub_resource type="CircleShape2D" id=1]
+radius = 112.0
+
 [node name="Enemey" instance=ExtResource( 1 )]
 scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 2 )
-hp = 1
 
 [node name="CollisionShape2D" parent="." index="0"]
 position = Vector2( -1, 2 )
 
-[node name="Line of sight" type="RayCast2D" parent="." index="3"]
-enabled = true
-cast_to = Vector2( 150, 0 )
-
-[node name="State_timer" type="Timer" parent="." index="4"]
+[node name="State_timer" type="Timer" parent="." index="3"]
 wait_time = 5.0
 autostart = true
 
+[node name="Player_spotted" type="Area2D" parent="." index="5"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_spotted" index="0"]
+position = Vector2( 80, 0 )
+shape = SubResource( 1 )
+
 [connection signal="timeout" from="State_timer" to="." method="_on_State_timer_timeout"]
+[connection signal="body_entered" from="Player_spotted" to="." method="_on_Player_spotted_body_entered"]
+[connection signal="body_exited" from="Player_spotted" to="." method="_on_Player_spotted_body_exited"]

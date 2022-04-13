@@ -22,6 +22,7 @@ enum enemy_states{
 
 
 func _ready():
+	randomize()
 	yield(get_tree(),"idle_frame")
 	var tree=get_tree()
 	if tree.has_group("Level_Navigation"):
@@ -30,7 +31,7 @@ func _ready():
 		player=tree.get_nodes_in_group("Player")[0]
 	if tree.has_group("Tilemap"):
 		tilemap=tree.get_nodes_in_group("Tilemap")[0]
-	current_state=enemy_states.WANDER
+	current_state=enemy_states.IDLE
 
 
 func _physics_process(delta):
@@ -108,10 +109,11 @@ func attack():
 
 
 func _on_State_timer_timeout():
-	var random_point_x=(global_position.x+int(rand_range(32*3,32*6)))*choose_random([1,-1])
-	var random_point_y=(global_position.y+int(rand_range(32*3,32*6)))*choose_random([1,-1])
-	target=Vector2(random_point_x,random_point_y).snapped(Vector2(32,32))
-	current_state=choose_random([enemy_states.IDLE,enemy_states.WANDER])
+	if !player_spoted:
+		var random_point_x=(global_position.x+int(rand_range(32*3,32*6)))*choose_random([1,-1])
+		var random_point_y=(global_position.y+int(rand_range(32*3,32*6)))*choose_random([1,-1])
+		target=Vector2(random_point_x,random_point_y).snapped(Vector2(32,32))
+		current_state=choose_random([enemy_states.IDLE,enemy_states.WANDER])
 
 func choose_random(arr:Array):
 	randomize()
