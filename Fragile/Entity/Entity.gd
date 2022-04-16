@@ -22,6 +22,8 @@ func _ready():
 
 
 func get_hit(attack):
+	if type == types[1]:
+		get_tree().get_nodes_in_group("Player")[0].power_gauge += 1
 	hp = hp - attack.damage
 	current_state = states.STUN
 	$StunTime.wait_time = attack.stun

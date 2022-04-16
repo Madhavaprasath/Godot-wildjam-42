@@ -10,11 +10,11 @@ var destroy_things : bool = false
 func _ready():
 	pass # Replace with function body.
 
-func init(t_attacker,t_damage,t_stun, t_spawnNode):
+func init(t_attacker,t_damage,t_stun, t_spawnNode, t_offset = Vector2()):
 	attacker = attacker_types[t_attacker]
 	damage = t_damage
 	stun = t_stun
-	set_position(t_spawnNode.get_position())
+	set_position(t_spawnNode.get_position() + t_offset)
 	set_rotation(t_spawnNode.get_rotation())
 	
 
