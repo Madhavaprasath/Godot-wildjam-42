@@ -15,7 +15,8 @@ export (int) var hp = 1
 func _process(delta):
 	if hp <= 0:
 		queue_free()
-# Called when the node enters the scene tree for the first time.
+
+
 func _ready():
 	$StunTime.connect("timeout",self,"_on_StunTime_timeout")
 	pass
@@ -28,7 +29,7 @@ func get_hit(attack):
 	current_state = states.STUN
 	$StunTime.wait_time = attack.stun
 	$StunTime.start();
-	
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
