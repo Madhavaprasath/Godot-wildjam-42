@@ -144,3 +144,13 @@ func turn_enemies():
 			return -90
 		elif target.y>0:
 			return 90
+
+
+func on_area_entered(body):
+	player=body
+	player_spoted=true
+
+
+func on_area_exited(body):
+	player=null
+	player_spoted=false
