@@ -7,6 +7,7 @@ export (int) var Speed=100
 var velocity=Vector2()
 
 onready var los=get_node("Line of sight")
+onready var check_surrounding=get_node("Check_Surrounding")
 onready var state_timer=get_node("State_timer")
 
 var tilemap=null
