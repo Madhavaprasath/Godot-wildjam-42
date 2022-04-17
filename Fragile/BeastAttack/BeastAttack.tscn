@@ -18,6 +18,6 @@ scale = Vector2( 1.771, 1 )
 shape = SubResource( 1 )
 
 [node name="Timer" type="Timer" parent="." index="3"]
-wait_time = 0.25
+wait_time = 0.1
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

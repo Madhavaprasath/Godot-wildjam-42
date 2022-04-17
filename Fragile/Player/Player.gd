@@ -63,7 +63,7 @@ func _apply_movement(delta):
 	direction = input_vector
 	if not (input_vector.x!=0 and input_vector.y!=0):
 		velocity=lerp(velocity,input_vector*movement_speed,pow(delta,0.001))
-	velocity=move_and_slide(velocity)
+	velocity=move_and_slide(input_vector*movement_speed)
 
 func _unhandled_input(event):
 	if event.is_action_pressed("Space") && power_gauge >= 10:
@@ -71,6 +71,7 @@ func _unhandled_input(event):
 	if event.is_action_pressed("Shift"):
 		initiate_dash()
 	if event is InputEventMouseButton and event.get_button_index() == 1 and event.is_pressed() && shooting == false:
+		shooting = true
 		_attack()
 		$ShootTimer.start()
 
@@ -95,10 +96,12 @@ func _attack() :
 		atk = load(myBeastAttack).instance()
 		offset = (get_viewport().get_mouse_position() - get_position()).normalized()
 	get_parent().add_child(atk)
-	atk.init(0,1,1,self)
+	atk.init(0,1,1,self,offset*100)
 
 func transform_into_beast():
 	print("beast on")
+	
+	$ShootTimer.wait_time =0.25
 	$BeastTime.start()
 	current_mode = modes[1]
 	pass
@@ -118,6 +121,7 @@ func _process_dash(delta):
 
 func _on_BeastTime_timeout():
 	current_mode = modes[0]
+	$ShootTimer.wait_time =0.25
 	power_gauge = 0
 	pass # Replace with function body.
 
